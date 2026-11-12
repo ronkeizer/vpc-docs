@@ -14,5 +14,5 @@
 ## Customization
 * [Stratification](stratification.md)
 * [Binning](binning.md)
-* [Prediction correction](pred-correction.md)
+* [Prediction / reference correction](pred-correction.md)
 * [Appearance](appearance.md)
