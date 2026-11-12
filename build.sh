@@ -7,6 +7,9 @@
 # build (Nov 2017). gitbook-plugin-mathjax 1.1.2 was published with merge
 # conflict markers, so 1.1.1 is used.
 #
+# The container runs as root, so the output is chowned back to the host user
+# (on Linux Docker, files would otherwise be root-owned).
+#
 # The resulting public/ folder is copied to the docs/ folder of the vpc repo,
 # which is deployed to GitHub Pages (vpc.ronkeizer.com).
 set -e
@@ -20,7 +23,8 @@ rm -rf public _book
 docker run --rm --platform linux/amd64 -v "$PWD":/book vpc-gitbook sh -c \
   "npm install --no-save --no-package-lock --before=2017-11-15 \
      gitbook-plugin-mathjax@1.1.1 gitbook-plugin-expandable-chapters gitbook-plugin-toc && \
-   gitbook build && cp -R _book public"
+   gitbook build && cp -R _book public && \
+   chown -R $(id -u):$(id -g) public _book node_modules"
 git checkout -- public/.gitignore
 
 echo "Done. Copy to the vpc repo with:"

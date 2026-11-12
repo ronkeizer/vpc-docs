@@ -41,8 +41,8 @@ Some notes:
 
 - Records are matched **by position**, so `obs` and every replicate in `sim` and `sim_ref` must contain the same records in the same order.
 - The correction is done per record, before binning.
-- The lower bound is taken from `pred_corr_lower_bnd` (default 0). Records with DV at or below the lower bound are excluded with a warning.
-- For data on the log scale, use `pred_corr_method = "additive"` (or `ltbs = TRUE`) to select the log-scale equations.
+- For data on the normal scale (default), the lower bound is taken from `pred_corr_lower_bnd` (default 0). Records with DV at or below the lower bound are excluded with a warning.
+- For data on the log scale, use `pred_corr_method = "additive"` (or `ltbs = TRUE`) to select the log-scale equations. `pred_corr_lower_bnd` is then ignored, and negative (log-scale) DV values are valid.
 - Censored data are handled as for the pcVPC, except that simulated values are censored _after_ correction, so that the variability correction is based on all simulated data.
 - `pred_corr` and `sim_ref` cannot be combined.
 

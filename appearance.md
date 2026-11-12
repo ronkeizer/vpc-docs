@@ -40,7 +40,7 @@ Color and transparency are set with the `outlier_fill` and `outlier_alpha` eleme
 
 ## Theming
 
-Besides showing / hiding specific elements, colors, fills, transparency (alpha), and linetypes and sizes can be changed easily using the `vpc_theme` argument and function. More general plot theming can be accomplished by supplying a ggplot2 theme to the `ggplot_theme` argument.
+Besides showing / hiding specific elements, colors, fills, transparency (alpha), and linetypes and sizes can be changed easily using the `vpc_theme` argument and function. More general plot theming can be accomplished by adding a ggplot2 theme to the plot (see below).
 
     vpc(sim, obs,
         vpc_theme = new_vpc_theme (list(
@@ -76,7 +76,7 @@ Any arguments specified to the `vpc_theme` list will overwrite the defaults, whi
     outlier_fill = "#dd0000",
     outlier_alpha = 0.5
 
-If you'd like to add additional lower-level theming using ggplot-elements, you can just use the standard [theming features](http://docs.ggplot2.org/current/theme.html) available in
+If you'd like to add additional lower-level theming using ggplot-elements, you can just use the standard [theming features](https://ggplot2.tidyverse.org/reference/theme.html) available in
 ggplot2, e.g.:
 
     vpc(sim, obs) + theme_bw()

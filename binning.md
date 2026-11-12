@@ -10,7 +10,7 @@ The vpc functions provides various options for binning (`bins=` argument):
 - `pretty`, `quantile`, `hclust`, `sd`, `bclust`, `fisher`. Methods provided by the `classInt` package, see the package help for more information.
 - a numeric vector with the bin separators, e.g. `bins = c(0, 2, 4, 6, 8, 12, 24)`.
 
-The number of bins is set with `n_bins`. With the default `n_bins = "auto"`, the `classInt` methods determine the number of bins themselves, while `time`, `data`, and `density` revert to 8 bins.
+The number of bins is set with `n_bins`. The default is `"auto"` for `vpc()` and `vpc_cat()`, `8` for `vpc_cens()`, and `10` for `vpc_tte()`. With `n_bins = "auto"`, the `classInt` methods determine the number of bins themselves, while `time`, `data`, and `density` revert to 8 bins.
 
 ## Binning per stratum
 
