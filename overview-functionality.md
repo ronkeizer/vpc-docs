@@ -41,3 +41,5 @@ If you want to use a standard or custom ggplot-theme, just add it on top (load t
     plot_vpc(vpc1) + theme_bw()
 
 See the customization section for more information regarding theming and plotting.
+
+_Note: in the vpcdb object, censored observations are stored as `-Inf` (below `lloq`) or `Inf` (above `uloq`), see [Censored data](censored-data.md)._
