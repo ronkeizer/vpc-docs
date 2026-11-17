@@ -1,0 +1,5 @@
+Dockerfile
+build.sh
+AGENTS.md
+.bookignore
+node_modules

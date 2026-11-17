@@ -26,11 +26,21 @@ The arguments specified in the list will overwrite the defaults, which are:
     pi = FALSE            # the prediction interval quantiles
     pi_ci = TRUE          # the confidence interval around the prediction interval quantiles
     pi_as_area = FALSE    # show the PI as area instead of two lines
-    bin_sep = TRUE        # show the bin separaters (as geom_rug)
+    bin_sep = TRUE        # show the bin separators (as geom_rug)
+    obs_cens = TRUE       # show the censoring limit (lloq / uloq) line
+    outlier_areas = FALSE # highlight where observed percentiles fall outside the simulated CI
+
+## Outlier areas
+
+With `show = list(outlier_areas = TRUE)`, the areas where an observed percentile falls outside the confidence interval of the corresponding simulated percentile are highlighted (in red), as in Monolix VPCs. This works with `smooth = TRUE` and `FALSE`, stratification, and log axes, and is also available in `vpc_cens()` (fraction below/above the limit of quantification) and `vpc_cat()` (fraction per category).
+
+    vpc(sim, obs, show = list(outlier_areas = TRUE))
+
+Color and transparency are set with the `outlier_fill` and `outlier_alpha` elements of `new_vpc_theme()`.
 
 ## Theming
 
-Besides showing / hiding specific elements, colors, fills, transparency (alpha), and linetypes and sizes can be changed easily using the `vpc_theme` argument and function. More general plot theming can be accomplished by supplying a ggplot2 theme to the `ggplot_theme` argument.
+Besides showing / hiding specific elements, colors, fills, transparency (alpha), and linetypes and sizes can be changed easily using the `vpc_theme` argument and function. More general plot theming can be accomplished by adding a ggplot2 theme to the plot (see below).
 
     vpc(sim, obs,
         vpc_theme = new_vpc_theme (list(
@@ -62,9 +72,11 @@ Any arguments specified to the `vpc_theme` list will overwrite the defaults, whi
     sim_median_color = "#000000",
     sim_median_linetype = "dashed",
     sim_median_size = 1,
-    bin_separators_color = "#000000"   
+    bin_separators_color = "#000000",
+    outlier_fill = "#dd0000",
+    outlier_alpha = 0.5
 
-If you'd like to add additional lower-level theming using ggplot-elements, you can just use the standard [theming features](http://docs.ggplot2.org/current/theme.html) available in
+If you'd like to add additional lower-level theming using ggplot-elements, you can just use the standard [theming features](https://ggplot2.tidyverse.org/reference/theme.html) available in
 ggplot2, e.g.:
 
     vpc(sim, obs) + theme_bw()
